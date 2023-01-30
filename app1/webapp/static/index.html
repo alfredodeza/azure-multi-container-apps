@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Codespaces & FastAPI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/ui/bootstrap.min.css">
+    <style>
+  html, body, .container {
+    height: 100%;
+}
+.container {
+    display: table;
+    vertical-align: middle;
+}
+.vertical-center-row {
+    display: table-cell;
+    vertical-align: middle;
+}
+img{
+        cursor: pointer;
+}
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="vertical-center-row">
+        <div class="row">
+          <div class="col-lg-12">
+              <p style="font-size:168px">
+              <a style="text-decoration: none" href="https://azure.microsoft.com/?WT.mc_id=academic-77460-alfredodeza">🚀</a>
+              </p>
+            <div class="bs-component">
+              <h2>Containerized Python API
+              </h2>
+              <p>This is a containerized application that exposes a JSON API using <a href="https://fastapi.tiangolo.com/">FastAPI</a> with <a href="https://azure.microsoft.com/?WT.mc_id=academic-0000-alfredodeza">Azure!</a></p>
+              <p>Use the buttons below to make use of the interactive (OpenAPI) documentation for trying out the API dynamically.
+                or browse the project source.
+              </p>  
+            <!-- create an interactive form using javascript that accepts text as input. The form must display a button and submit an asynchronous request to /search -->
+            <form id="search-form" action="/search" method="POST">
+                <input type="text" name="search" id="search" placeholder="Search for a word">
+                <input type="submit" value="Search">
+            </form>
+            <div id="search-results"></div>
+            <script>
+                const searchForm = document.getElementById('search-form');
+                const searchResults = document.getElementById('search-results');
+                searchForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const formData = new FormData(searchForm);
+                    const search = formData.get('search');
+                    // make an asynchronous POST request to /search and assign it to the variable response. The request must use a JSON object with 'text' as the key and the search term as the value
+                    const response = await fetch('/search', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            text: search
+                        })
+                    });
+                    const data = await response.json();
+                    searchResults.innerHTML = JSON.stringify(data);
+                });
+            </script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
