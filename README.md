@@ -1,6 +1,6 @@
 # Deploy Azure Multi-Container Apps
 
-Deploy multiple container apps to Azure with FQDN connections from the Github Container Registry using Container Apps and automate all of it using GitHub Actions.
+Deploy multiple container apps to Azure with FQDN connections from the Github Container Registry using Container Apps and automate all of it using GitHub Actions. This example deployment and automation used [an official guide](https://github.com/Azure-Samples/container-apps-connect-multiple-apps/tree/main/with-fqdn) as a reference.
 
 ## What are we deploying
 We are going to setup two containers. Container 1 is a lightweight _front end_ with little bit of JavaScript, HTML, and CSS. Container 2 will be the _back end_, and it will expose an HTTP API that Container 1 can call.
