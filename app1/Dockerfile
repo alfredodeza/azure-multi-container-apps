@@ -6,7 +6,7 @@ WORKDIR /webapp
 
 RUN pip install -r requirements.txt
 
-COPY webapp/* /webapp
+COPY webapp/ /webapp/
 
 EXPOSE 8000
 
