@@ -5,6 +5,19 @@ Deploy multiple container apps to Azure with FQDN connections from the Github Co
 ## What are we deploying
 We are going to setup two containers. Container 1 is a lightweight _front end_ with little bit of JavaScript, HTML, and CSS. Container 2 will be the _back end_, and it will expose an HTTP API that Container 1 can call.
 
+## Create your Azure resources
+
+1. Create a Container App named `app1` with a new resource group called `demo-multiapp`
+1. Create a Container App Environment named `demo-multiapp-env`
+1. Now create another Container App named `app2` reusing the same resource group and App Environment
+
+### Configure your Apps
+You can achieve these actions with the Azure CLI as well as the portal:
+
+1. Go to `app1` settings and click on _Ingress_ and change the port to `8000`
+1. Go to `app2` settings and click on _Ingress_ and change the port to `8001`
+1. Change the _Ingress Traffic_ on `app2` to _Limited to Container Apps Environment_
+
 ## Generate a PAT
 
 The access token will need to be added as an Action secret. [Create one](https://github.com/settings/tokens/new?description=Azure+Container+Apps+access&scopes=write:packages) with enough permissions to write to packages.
