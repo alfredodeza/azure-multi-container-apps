@@ -3,7 +3,9 @@ from fastapi import FastAPI, Response
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
+import os
 
+API_FQDN = os.environ.get("api-fqdn", "http://localhost:8001")
 
 current_dir = dirname(abspath(__file__))
 static_path = join(current_dir, "static")
@@ -24,4 +26,6 @@ def root():
 
 @app.post('/search')
 def predict(body: Body):
-    return {"text": body.text}
+    import requests
+    result = requests.post(API_FQDN + "/token", json={"text": body.text})
+    return result.text

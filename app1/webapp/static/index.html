@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>Codespaces & FastAPI</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/ui/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
     <style>
   html, body, .container {
     height: 100%;
@@ -34,14 +34,11 @@ img{
             <div class="bs-component">
               <h2>Containerized Python API
               </h2>
-              <p>This is a containerized application that exposes a JSON API using <a href="https://fastapi.tiangolo.com/">FastAPI</a> with <a href="https://azure.microsoft.com/?WT.mc_id=academic-0000-alfredodeza">Azure!</a></p>
-              <p>Use the buttons below to make use of the interactive (OpenAPI) documentation for trying out the API dynamically.
-                or browse the project source.
-              </p>  
+              <p>This is a containerized application that exposes Checksum generation button that talks to another API deployed in <a href="https://azure.microsoft.com/?WT.mc_id=academic-0000-alfredodeza">Azure!</a></p>
             <!-- create an interactive form using javascript that accepts text as input. The form must display a button and submit an asynchronous request to /search -->
             <form id="search-form" action="/search" method="POST">
-                <input type="text" name="search" id="search" placeholder="Search for a word">
-                <input type="submit" value="Search">
+                <input type="text" name="generate" id="generate" placeholder="Checksum any word">
+                <input type="submit" value="Generate!">
             </form>
             <div id="search-results"></div>
             <script>
@@ -50,7 +47,7 @@ img{
                 searchForm.addEventListener('submit', async (e) => {
                     e.preventDefault();
                     const formData = new FormData(searchForm);
-                    const search = formData.get('search');
+                    const search = formData.get('generate');
                     // make an asynchronous POST request to /search and assign it to the variable response. The request must use a JSON object with 'text' as the key and the search term as the value
                     const response = await fetch('/search', {
                         method: 'POST',
@@ -61,8 +58,11 @@ img{
                             text: search
                         })
                     });
-                    const data = await response.json();
-                    searchResults.innerHTML = JSON.stringify(data);
+                    // use the value of the response variable to get the JSON data from the response and assign it to the variable data
+                    const value = await response.json();
+                    //use the value variable to display the JSON data in the searchResults element
+                    searchResults.innerHTML = value;
+            
                 });
             </script>
             </div>
