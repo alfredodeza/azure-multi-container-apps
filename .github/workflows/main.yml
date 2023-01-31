@@ -40,16 +40,18 @@ jobs:
       - name: Build and push App 1 container image to registry
         uses: docker/build-push-action@v2
         with:
+          context: app1
           push: true
           tags: ghcr.io/${{ env.REPO }}:app1
-          file: ./app1/Dockerfile
+          file: ./Dockerfile
 
       - name: Build and push App 2 container image to registry
         uses: docker/build-push-action@v2
         with:
+          context: app2
           push: true
           tags: ghcr.io/${{ env.REPO }}:app2
-          file: ./app2/Dockerfile
+          file: ./Dockerfile
 
 
   deploy:
