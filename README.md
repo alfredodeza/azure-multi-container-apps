@@ -20,6 +20,8 @@ You'll need the following:
 az ad sp create-for-rbac --name "CICD" --role contributor --scopes /subscriptions/$AZURE_SUBSCRIPTION_ID --sdk-auth
 ``` 
 
+You _must_ add the resulting JSON value as an Actions Secret with the name of `AZURE_CREDENTIALS`
+
 
 ## Azure Container Apps
 
